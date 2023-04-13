@@ -3,13 +3,13 @@ package es.progcipfpbatoi.utils;
 import es.progcipfpbatoi.exceptions.DniInvalid;
 import es.progcipfpbatoi.modelo.entidades.Dni;
 
-public class Validator {
-    private final static String DNI_REGREX = "[0-9]{8}";
+public class ValidatorDni {
+    private final static String DNI_REGREX        = "[0-9]{8}";
 
 
-    public static boolean isValidDni(String dni) {
+    public static boolean isValid(String dni) {
         try {
-            if ( isValidDigits( dni ) && isValidaSize( dni ) ) {
+            if ( isValidDigits( dni ) && isValidSize( dni ) ) {
                 return true;
             }
         } catch ( DniInvalid e1 ) {
@@ -25,7 +25,7 @@ public class Validator {
         throw new DniInvalid( "Dítigos inválidos" );
     }
 
-    private static boolean isValidaSize(String dni) throws DniInvalid {
+    private static boolean isValidSize(String dni) throws DniInvalid {
         if ( dni.length() == 8 ) {
             return true;
         }
@@ -35,6 +35,6 @@ public class Validator {
     public static void main(String[] args) {
         String dni  = "21691308";
         Dni    dni1 = new Dni( dni );
-        System.out.println(dni1);
+        System.out.println( dni1 );
     }
 }

@@ -1,13 +1,13 @@
 package es.progcipfpbatoi.modelo.entidades;
 
-import es.progcipfpbatoi.utils.Validator;
+import es.progcipfpbatoi.utils.ValidatorDni;
 
 public class Dni {
     private              String dni;
     private final static String POSSIBLE_LETTERS = "TRWAGMYFPDXBNJZSQVHLCKE";
 
     public Dni(String dni) {
-        if ( Validator.isValidDni( dni ) ) {
+        if ( ValidatorDni.isValid( dni ) ) {
             this.dni = dni + calculateDniLetter( dni );
         }
     }
