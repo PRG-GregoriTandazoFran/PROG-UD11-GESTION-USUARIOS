@@ -2,6 +2,8 @@ package es.progcipfpbatoi.modelo.entidades;
 
 import es.progcipfpbatoi.utils.ValidatorTelefono;
 
+import java.util.Collections;
+
 public class TelefonoMovil {
     private String telefono;
 
