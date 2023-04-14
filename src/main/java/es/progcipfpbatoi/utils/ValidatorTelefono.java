@@ -12,7 +12,7 @@ public class ValidatorTelefono {
 
     public static boolean isValid(String telefono) {
         try {
-            if ( isValidSize( telefono ) && areValidDigits( telefono ) && isCorrectStartNumber( telefono )) {
+            if ( isValidSize( telefono ) && areValidDigits( telefono ) && isCorrectStartNumber( telefono ) ) {
                 return true;
             }
         } catch ( NumeroTelefonoInvalido e1 ) {
@@ -45,32 +45,40 @@ public class ValidatorTelefono {
     private static char starWiths(String telefono) throws NumeroTelefonoInvalido {
         switch ( telefono.length() ) {
             case MIN_SIZE -> {
-                return startWithsPrefixFormat( telefono );
+                return prefixFormat( telefono );
             }
             case MEDIUM_SIZE -> {
-                return startWithsPlusPrefixFormat( telefono );
+                if ( !startPerPlus( telefono ) ) {
+                    throw new NumeroTelefonoInvalido( "No empieza por +" );
+                }
+                return plusPrefixFormat( telefono );
+
             }
             case MAX_SIZE -> {
-                return startWithsZerosPrefixFormat( telefono );
+                return zerosPrefixFormat( telefono );
             }
         }
-        throw new NumeroTelefonoInvalido( "No empieza por 6 o 7" );
+        throw new NumeroTelefonoInvalido( "Un número de tlf debe empezar por 6 o 7" );
     }
 
-    private static char startWithsPrefixFormat(String telefono) {
+    private static boolean startPerPlus(String telefono) {
+        return telefono.charAt( 0 ) == '+';
+    }
+
+    private static char prefixFormat(String telefono) {
         return telefono.charAt( 2 );
     }
 
-    private static char startWithsPlusPrefixFormat(String telefono) {
+    private static char plusPrefixFormat(String telefono) {
         return telefono.charAt( 3 );
     }
 
-    private static char startWithsZerosPrefixFormat(String telefono) {
+    private static char zerosPrefixFormat(String telefono) {
         return telefono.charAt( 4 );
     }
 
     public static void main(String[] args) {
-        TelefonoMovil tlf = new TelefonoMovil( "34642603912" );
+        TelefonoMovil tlf = new TelefonoMovil( "0034642603912" );
 
         System.out.println( tlf );
     }
