@@ -7,5 +7,5 @@ import java.util.ArrayList;
 public interface UsuariosRepository {
     boolean save(User user);
     ArrayList<User> findAll();
-    User find(User user);
+    User find(String dni);
 }
