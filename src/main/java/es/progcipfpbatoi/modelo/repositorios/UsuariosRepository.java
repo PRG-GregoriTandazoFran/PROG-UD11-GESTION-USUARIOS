@@ -1,5 +1,6 @@
 package es.progcipfpbatoi.modelo.repositorios;
 
+import es.progcipfpbatoi.modelo.entidades.Dni;
 import es.progcipfpbatoi.modelo.entidades.User;
 
 import java.util.ArrayList;
@@ -7,5 +8,5 @@ import java.util.ArrayList;
 public interface UsuariosRepository {
     boolean save(User user);
     ArrayList<User> findAll();
-    User find(String dni);
+    User find(Dni dni);
 }

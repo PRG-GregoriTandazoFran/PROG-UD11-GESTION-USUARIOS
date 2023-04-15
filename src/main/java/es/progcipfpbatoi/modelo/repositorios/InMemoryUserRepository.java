@@ -1,5 +1,6 @@
 package es.progcipfpbatoi.modelo.repositorios;
 
+import es.progcipfpbatoi.modelo.entidades.Dni;
 import es.progcipfpbatoi.modelo.entidades.User;
 
 import java.util.ArrayList;
@@ -9,16 +10,26 @@ public class InMemoryUserRepository implements UsuariosRepository{
 
     @Override
     public boolean save(User user) {
-        return false;
+        if ( usersList.contains( user ) ){
+            return false;
+        }
+        usersList.add( user );
+        return true;
     }
 
     @Override
     public ArrayList<User> findAll() {
-        return null;
+        return usersList;
     }
 
     @Override
-    public User find(String dni) {
+    public User find(Dni dni) {
+        for ( User user :
+                usersList ) {
+            if ( user.getDni().equals( dni ) ){
+                return user;
+            }
+        }
         return null;
     }
 }
